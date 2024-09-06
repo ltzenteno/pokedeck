@@ -42,6 +42,7 @@ export type EvoChain = {
 };
 
 export type PokemonDetail = {
+  id: number;
   name: string;
   sprites: {
     front_default: string;

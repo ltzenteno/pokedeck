@@ -19,13 +19,14 @@ const Paginator: React.FC<PaginatorProps> = ({
   };
 
   return (
-    <div>
+    <div className="flex gap-10 justify-center">
       <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-slate-400"
         disabled={currentPage == 1}
         onClick={previous}
       >
         <svg
-          fill="#000000"
+          fill="white"
           height="24px"
           width="24px"
           version="1.1"
@@ -43,10 +44,11 @@ const Paginator: React.FC<PaginatorProps> = ({
         </svg>
       </button>
       <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-slate-400"
         onClick={next}
       >
         <svg
-          fill="#000000"
+          fill="white"
           height="24px"
           width="24px"
           version="1.1"

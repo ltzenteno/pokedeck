@@ -8,44 +8,51 @@ const Detail: React.FC = () => {
   }
 
   return (
-    <div>
-      <h1>{ selectedPokemon.name }</h1>
+    <div className="py-6 px-24">
+      <h1 className="font-bold text-lg uppercase">{ selectedPokemon.name }</h1>
       <img
         src={selectedPokemon.sprites.front_default}
         alt={selectedPokemon.name}
       />
-      <div>
-        <h3>Types:</h3>
-        <ul>
+      <div className="flex gap-10 p-4">
+        <h3 className="capitalize">types:</h3>
+        <ul className="text-sm text-gray-500">
           {selectedPokemon.types.map((t, i) => (
             <li key={i}>{t.type.name}</li>
           ))}
         </ul>
       </div>
-      <div>
-        <h3>abilities:</h3>
-        <ul>
+      <div className="flex gap-10 p-4">
+        <h3 className="capitalize">abilities:</h3>
+        <ul className="text-sm text-gray-500">
           {selectedPokemon.abilities.map((a, i) => (
             <li key={i}>{a.ability.name}</li>
           ))}
         </ul>
       </div>
-      <div>
-        <h3>stats:</h3>
-        <ul>
-          {selectedPokemon.stats.map((s, i) => (
-            <li key={i}>
-              <div>
-                <p>{s.stat.name}</p>
-                <span>base stat: {s.base_stat}</span>
-                <span>effort: {s.effort}</span>
-              </div>
-            </li>
-          ))}
-        </ul>
+      <div className="flex gap-10 p-4">
+        <h3 className="capitalize">stats:</h3>
+        <table className="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" className="px-6 py-3">name</th>
+              <th scope="col" className="px-6 py-3">base stat</th>
+              <th scope="col" className="px-6 py-3">effort</th>
+            </tr>
+          </thead>
+          <tbody>
+            {selectedPokemon.stats.map((s, i) => (
+              <tr key={i}>
+                  <td>{s.stat.name}</td>
+                  <td>{s.base_stat}</td>
+                  <td>{s.effort}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      <div>
-        <h3>evo chain:</h3>
+      <div className="flex gap-10 p-4">
+        <h3 className="capitalize">evo chain:</h3>
       </div>
     </div>
   );

@@ -3,11 +3,13 @@ import List from '../../components/List';
 import Paginator from '../../components/paginator';
 import SearchBar from '../../components/SearchBar/ndex';
 import { usePokemons } from './hooks/usePokemons';
+import { useFavorites } from '../Favorites/hooks/useFavorites';
 
 const Home: React.FC = () => {
   const { items, text, setText, search, clear, handlePagination, currentPage } = usePokemons();
+  const { favorites } = useFavorites();
   return (
-    <div className="p-6">
+    <div className="py-6 px-24">
       <div>
         <SearchBar
           clear={clear}
@@ -17,14 +19,17 @@ const Home: React.FC = () => {
           text={text}
         />
       </div>
-      <div>
-        <Link to="/favorites">favorites</Link>
+      <div className="py-6">
+        <Link className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to="/favorites">See favorites ({favorites.length})</Link>
       </div>
-      <List
-        items={items}
-        canManageFavorite
-      />
-      <div className="py-3">
+      <div>
+        <List
+          headers={['name', '', 'favorite']}
+          items={items}
+          canManageFavorite
+        />
+      </div>
+      <div className="mt-8 text-center">
         <Paginator
           currentPage={currentPage}
           handleNext={handlePagination}
