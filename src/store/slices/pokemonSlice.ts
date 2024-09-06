@@ -17,7 +17,8 @@ interface PokemonState {
       message: string;
     };
   };
-  favorites: PokemonDetail[];
+  favorites: PokemonDetail['name'][];
+  filteredPokemons: PokemonDetail[];
 }
 
 const initialState: PokemonState = {
@@ -35,6 +36,7 @@ const initialState: PokemonState = {
     isLoading: false,
   },
   favorites: [],
+  filteredPokemons: [],
 };
 
 const reducers = {
@@ -50,8 +52,20 @@ const reducers = {
   setDetail: (state: PokemonState, action: PayloadAction<PokemonDetail>): void => {
     state.detail.pokemon = action.payload;
   },
-  setIsloadingDetail: (state: PokemonState, action: PayloadAction<boolean>): void => {
+  setIsLoadingDetail: (state: PokemonState, action: PayloadAction<boolean>): void => {
     state.detail.isLoading = action.payload;
+  },
+  setFilteredPokemons: (state: PokemonState, action: PayloadAction<PokemonDetail[]>): void => {
+    state.filteredPokemons = action.payload;
+  },
+  addFavorite: (state: PokemonState, action: PayloadAction<PokemonDetail['name']>) => {
+    // redux uses immer underneath, it is safe to "mutate" the state inside these functions
+    state.favorites.push(action.payload);
+  },
+  removeFavorite: (state: PokemonState, action: PayloadAction<PokemonDetail['name']>) => {
+    const index = state.favorites.findIndex((name) => name === action.payload);
+
+    state.favorites.splice(index, 1);
   },
 };
 
@@ -66,7 +80,10 @@ export const {
   setCurrentPage,
   setIsLoading,
   setDetail,
-  setIsloadingDetail,
+  setIsLoadingDetail,
+  setFilteredPokemons,
+  addFavorite,
+  removeFavorite,
 } = pokemonSlice.actions;
 
 export default pokemonSlice.reducer;
