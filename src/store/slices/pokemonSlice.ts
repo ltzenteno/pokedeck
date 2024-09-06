@@ -10,6 +10,13 @@ interface PokemonState {
       message: string;
     }
   };
+  detail: {
+    pokemon?: PokemonDetail;
+    isLoading: boolean;
+    error?: {
+      message: string;
+    };
+  };
   favorites: PokemonDetail[];
 }
 
@@ -22,6 +29,9 @@ const initialState: PokemonState = {
       results: [],
     },
     currentPage: 1,
+    isLoading: false,
+  },
+  detail: {
     isLoading: false,
   },
   favorites: [],
@@ -37,6 +47,12 @@ const reducers = {
   setIsLoading: (state: PokemonState, action: PayloadAction<boolean>): void => {
     state.paginatedPokemons.isLoading = action.payload;
   },
+  setDetail: (state: PokemonState, action: PayloadAction<PokemonDetail>): void => {
+    state.detail.pokemon = action.payload;
+  },
+  setIsloadingDetail: (state: PokemonState, action: PayloadAction<boolean>): void => {
+    state.detail.isLoading = action.payload;
+  },
 };
 
 const pokemonSlice = createSlice({
@@ -49,6 +65,8 @@ export const {
   setPaginatedPokemons,
   setCurrentPage,
   setIsLoading,
+  setDetail,
+  setIsloadingDetail,
 } = pokemonSlice.actions;
 
 export default pokemonSlice.reducer;
