@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import List from '../../components/List';
 import Paginator from '../../components/paginator';
 import SearchBar from '../../components/SearchBar/ndex';
@@ -15,6 +16,9 @@ const Home: React.FC = () => {
           submit={search}
           text={text}
         />
+      </div>
+      <div>
+        <Link to="/favorites">favorites</Link>
       </div>
       <List
         items={items}

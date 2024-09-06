@@ -6,6 +6,7 @@ import './index.css';
 import Home from './pages/Home';
 import { Provider } from 'react-redux';
 import Detail from './pages/Detail';
+import Favorites from './pages/Favorites';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: '/detail/:name',
     element: <Detail />,
+  },
+  {
+    path: '/favorites',
+    element: <Favorites />,
   },
 ]);
 
