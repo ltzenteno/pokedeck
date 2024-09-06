@@ -19,6 +19,11 @@ export const usePokemons = () => {
     }
   };
 
+  const clear = () => {
+    setText('');
+    dispatch(setFilteredPokemons(paginatedPokemons.page.results));
+  };
+
   useEffect(() => {
     dispatch(getPaginatedPokemons({ page: paginatedPokemons.currentPage }))
   }, [dispatch, paginatedPokemons.currentPage]);
@@ -28,5 +33,6 @@ export const usePokemons = () => {
     text,
     setText,
     search,
+    clear,
   };
 };
