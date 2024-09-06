@@ -18,8 +18,8 @@ export const useDetail = () => {
     if (!found) {
       dispatch(getDetail({ name: name || '' }));
     } else {
-      if (found.detail) {
-        dispatch(setDetail(found.detail));
+      if (found) {
+        dispatch(setDetail(found));
       }
     }
   }, [dispatch, name, pokemonList]);

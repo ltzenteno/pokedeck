@@ -23,8 +23,7 @@ export const getPaginatedPokemons = createAsyncThunk<
   const keyed = keyBy(details, 'name');
   const updatedList = response.results.map((item) => {
     return {
-      ...item,
-      detail: keyed[item.name],
+      ...keyed[item.name],
     };
   });
 

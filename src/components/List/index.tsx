@@ -1,8 +1,8 @@
-import { PokemonItem } from '../../types';
+import { PokemonDetail } from '../../types';
 import ListItem from '../ListItem';
 
 export interface ListProps {
-  items: PokemonItem[];
+  items: PokemonDetail[];
 }
 
 const List: React.FC<ListProps> = ({ items }) => {

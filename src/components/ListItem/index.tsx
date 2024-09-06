@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { PokemonItem } from '../../types';
+import { PokemonDetail } from '../../types';
 
 export interface ListItemProps {
-  item: PokemonItem;
+  item: PokemonDetail;
 }
 
 const ListItem: React.FC<ListItemProps> = ({ item }) => {
@@ -11,7 +11,7 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
     <div>
       <Link to={`/detail/${name}`}>
         <p>{name}</p>
-        <img src={item.detail?.sprites.front_default} alt={name} />
+        <img src={item.sprites.front_default} alt={name} />
       </Link>
     </div>
   );

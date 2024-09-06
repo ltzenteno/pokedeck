@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PageResponse, PokemonDetail, PokemonItem } from '../../types';
+import { PageResponse, PokemonDetail } from '../../types';
 
 interface PokemonState {
   paginatedPokemons: {
-    page: PageResponse<PokemonItem>;
+    page: PageResponse<PokemonDetail>;
     currentPage: number;
     isLoading: boolean;
     error?: {
@@ -38,7 +38,7 @@ const initialState: PokemonState = {
 };
 
 const reducers = {
-  setPaginatedPokemons: (state: PokemonState, action: PayloadAction<PageResponse<PokemonItem>>): void => {
+  setPaginatedPokemons: (state: PokemonState, action: PayloadAction<PageResponse<PokemonDetail>>): void => {
     state.paginatedPokemons.page = action.payload;
   },
   setCurrentPage: (state: PokemonState, action: PayloadAction<number>): void => {
