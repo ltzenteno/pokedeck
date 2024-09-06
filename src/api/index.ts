@@ -10,7 +10,7 @@ export const fetchPokemons = async ({
   page: number;
   retries?: number;
 }): Promise<PageResponse<PokemonItem>> => {
-  const offset = LIMIT * page;
+  const offset = LIMIT * (page - 1);
   const response = await fetch(`${API_URL}/pokemon/?limit=${LIMIT}&offset=${offset}`);
 
   if (response.ok) {
