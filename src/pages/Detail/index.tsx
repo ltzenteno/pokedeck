@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useDetail } from './hooks/useDetail';
 
 const Detail: React.FC = () => {
@@ -9,6 +10,7 @@ const Detail: React.FC = () => {
 
   return (
     <div className="py-6 px-24">
+      <Link className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to="/">Go Back</Link>
       <h1 className="font-bold text-lg uppercase">{ selectedPokemon.name }</h1>
       <img
         src={selectedPokemon.sprites.front_default}

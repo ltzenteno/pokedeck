@@ -5,6 +5,7 @@ import SearchBar from '../../components/SearchBar/ndex';
 import { usePokemons } from './hooks/usePokemons';
 import { useFavorites } from '../Favorites/hooks/useFavorites';
 import Alert from '../../components/Alert';
+import ListSkeleton from '../../components/ListSkeleton';
 
 const Home: React.FC = () => {
   const {
@@ -16,6 +17,7 @@ const Home: React.FC = () => {
     handlePagination,
     currentPage,
     paginatedError,
+    isLoading,
   } = usePokemons();
   const { favorites } = useFavorites();
 
@@ -56,7 +58,7 @@ const Home: React.FC = () => {
       <div>
         <SearchBar
           clear={clear}
-          disabled={text.length === 0}
+          disabled={text.trim().length === 0}
           setText={setText}
           submit={search}
           text={text}
@@ -65,7 +67,10 @@ const Home: React.FC = () => {
       <div className="py-6">
         <Link className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to="/favorites">See favorites ({favorites.length})</Link>
       </div>
-      {displayList()}
+      {isLoading && (
+        <ListSkeleton />
+      )}
+      {!isLoading && displayList()}
     </div>
   );
 };

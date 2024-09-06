@@ -8,6 +8,7 @@ export const usePokemons = () => {
   const paginatedPokemons = useAppSelector((state) => state.pokemon.paginatedPokemons);
   const filteredPokemons = useAppSelector((state) => state.pokemon.filteredPokemons);
   const paginatedError = useAppSelector((state) => state.pokemon.paginatedPokemons.error);
+  const isLoading = useAppSelector((state) => state.pokemon.paginatedPokemons.isLoading);
   const [text, setText] = useState<string>('');
 
   const search = () => {
@@ -42,5 +43,6 @@ export const usePokemons = () => {
     currentPage: paginatedPokemons.currentPage,
     handlePagination,
     paginatedError,
+    isLoading,
   };
 };
