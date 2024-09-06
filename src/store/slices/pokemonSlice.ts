@@ -17,7 +17,7 @@ interface PokemonState {
       message: string;
     };
   };
-  favorites: PokemonDetail['name'][];
+  favorites: PokemonDetail[];
   filteredPokemons: PokemonDetail[];
 }
 
@@ -58,11 +58,11 @@ const reducers = {
   setFilteredPokemons: (state: PokemonState, action: PayloadAction<PokemonDetail[]>): void => {
     state.filteredPokemons = action.payload;
   },
-  addFavorite: (state: PokemonState, action: PayloadAction<PokemonDetail['name']>) => {
+  addFavorite: (state: PokemonState, action: PayloadAction<PokemonDetail>) => {
     // redux uses immer underneath, it is safe to "mutate" the state inside these functions
     state.favorites.push(action.payload);
   },
-  removeFavorite: (state: PokemonState, action: PayloadAction<PokemonDetail['name']>) => {
+  removeFavorite: (state: PokemonState, action: PayloadAction<PokemonDetail>) => {
     const index = state.favorites.findIndex((name) => name === action.payload);
 
     state.favorites.splice(index, 1);
