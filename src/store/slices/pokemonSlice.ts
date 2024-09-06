@@ -63,7 +63,7 @@ const reducers = {
     state.favorites.push(action.payload);
   },
   removeFavorite: (state: PokemonState, action: PayloadAction<PokemonDetail>) => {
-    const index = state.favorites.findIndex((name) => name === action.payload);
+    const index = state.favorites.findIndex((pokemon) => pokemon.name === action.payload.name);
 
     state.favorites.splice(index, 1);
   },

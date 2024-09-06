@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { PokemonDetail } from '../../types';
+import { useFavorites } from '../../pages/Favorites/hooks/useFavorites';
 
 export interface ListItemProps {
   item: PokemonDetail;
@@ -11,16 +12,25 @@ const ListItem: React.FC<ListItemProps> = ({
   canManageFavorite,
 }) => {
   const { name } = item;
-  const isFavorite = true;
+  const { add, remove, isFavorite } = useFavorites();
+
+  const favorite = isFavorite(item.name);
 
   const handleFavorite = () => {
+    if (favorite) {
+      remove(item);
+    } else {
+      add(item);
+    }
   };
 
   return (
-    <div>
+    <div className="flex">
       <Link to={`/detail/${name}`}>
-        <p>{name}</p>
-        <img src={item.sprites.front_default} alt={name} />
+        <div className="flex">
+          <p>{name}</p>
+          <img src={item.sprites.front_default} alt={name} />
+        </div>
       </Link>
       {canManageFavorite && (
         <button
@@ -30,7 +40,7 @@ const ListItem: React.FC<ListItemProps> = ({
             width="24px"
             height="24px"
             viewBox="0 0 24 24"
-            fill={isFavorite ? '#eab308': 'none'}
+            fill={favorite ? '#eab308': 'none'}
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
