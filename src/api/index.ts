@@ -12,6 +12,7 @@ export const fetchPokemons = async ({
   const response = await fetch(`${API_URL}/pokemon/?limit=${LIMIT}&offset=${offset}`);
 
   return (await response.json()) as PageResponse<PokemonItem>;
+  //throw new Error('Some server error');
 };
 
 export const fetchDetail = async ({

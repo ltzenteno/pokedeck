@@ -8,13 +8,15 @@ interface PokemonState {
     isLoading: boolean;
     error?: {
       message: string;
-    }
+      description: string;
+    };
   };
   detail: {
     pokemon?: PokemonDetail;
     isLoading: boolean;
     error?: {
       message: string;
+      description: string;
     };
   };
   favorites: PokemonDetail[];
@@ -49,6 +51,16 @@ const reducers = {
   setIsLoading: (state: PokemonState, action: PayloadAction<boolean>): void => {
     state.paginatedPokemons.isLoading = action.payload;
   },
+  setHomeError: (state: PokemonState, action: PayloadAction<{ message: string, description: string } | undefined>): void => {
+    if (action.payload) {
+      state.paginatedPokemons.error = {
+        message: action.payload.message,
+        description: action.payload.description,
+      };
+    } else {
+      state.paginatedPokemons.error = undefined;
+    }
+  },
   setDetail: (state: PokemonState, action: PayloadAction<PokemonDetail>): void => {
     state.detail.pokemon = action.payload;
   },
@@ -82,6 +94,7 @@ export const {
   setDetail,
   setIsLoadingDetail,
   setFilteredPokemons,
+  setHomeError,
   addFavorite,
   removeFavorite,
 } = pokemonSlice.actions;
