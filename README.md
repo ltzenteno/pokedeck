@@ -25,9 +25,13 @@ Now you can run it with:
 yarn dev
 ```
 
+# Demo
+
+You can see a live demo here: [https://ltzpokedeck.netlify.app/](https://ltzpokedeck.netlify.app/)
+
 ### Notes and Assumptions:
 
-1. Search functionality was implemented 100% on the front end side by only filtering the current paginated results, ideally there should be a `search` endpoint on the server / API side which receives a `search` query parameter and based on that return a list of matches (I couldn't find a search endpoint at first sight).
+1. Search functionality was implemented 100% on the front end side by only filtering the current paginated results, ideally there should be a `search` endpoint on the server / API side which receives a `search` query parameter and based on that return a list of matches (I couldn't find a search endpoint at first sight). If I were to implement right now an API search, it would need to be an exact match, i. e. "pikachu" not "pika".
 
 2. In the detail page I couldn't find the relationship which links the `Pokemon` entity with the `EvolutionChain`, hence I didn't integrate that API call to display it in the "Detail" page.
 
