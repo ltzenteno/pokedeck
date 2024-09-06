@@ -1,8 +1,28 @@
-const Paginator: React.FC = () => {
+export interface PaginatorProps {
+  currentPage: number;
+  handlePrevious: (page: number) => void;
+  handleNext: (page: number) => void;
+}
+
+const Paginator: React.FC<PaginatorProps> = ({
+  currentPage,
+  handleNext,
+  handlePrevious,
+}) => {
+
+  const next = () => {
+    handleNext(currentPage + 1);
+  };
+
+  const previous = () => {
+    handlePrevious(currentPage - 1);
+  };
+
   return (
     <div>
       <button
-        onClick={() => []}
+        disabled={currentPage == 1}
+        onClick={previous}
       >
         <svg
           fill="#000000"
@@ -23,7 +43,7 @@ const Paginator: React.FC = () => {
         </svg>
       </button>
       <button
-        onClick={() => []}
+        onClick={next}
       >
         <svg
           fill="#000000"

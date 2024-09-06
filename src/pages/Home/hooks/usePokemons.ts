@@ -24,6 +24,10 @@ export const usePokemons = () => {
     dispatch(setFilteredPokemons(paginatedPokemons.page.results));
   };
 
+  const handlePagination = (page: number) => {
+    dispatch(getPaginatedPokemons({ page }));
+  };
+
   useEffect(() => {
     dispatch(getPaginatedPokemons({ page: paginatedPokemons.currentPage }))
   }, [dispatch, paginatedPokemons.currentPage]);
@@ -34,5 +38,7 @@ export const usePokemons = () => {
     setText,
     search,
     clear,
+    currentPage: paginatedPokemons.currentPage,
+    handlePagination,
   };
 };

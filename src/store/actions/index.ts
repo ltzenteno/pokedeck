@@ -3,7 +3,7 @@ import keyBy from 'lodash.keyby';
 import { fetchDetail, fetchPokemons } from '../../api';
 import { PageResponse, PokemonDetail, PokemonItem } from '../../types';
 import { RootState } from '..';
-import { setDetail, setFilteredPokemons, setIsLoading, setIsLoadingDetail, setPaginatedPokemons } from '../slices/pokemonSlice';
+import { setCurrentPage, setDetail, setFilteredPokemons, setIsLoading, setIsLoadingDetail, setPaginatedPokemons } from '../slices/pokemonSlice';
 
 export const getPaginatedPokemons = createAsyncThunk<
   PageResponse<PokemonItem>,
@@ -31,6 +31,7 @@ export const getPaginatedPokemons = createAsyncThunk<
     ...response,
     results: updatedList,
   }));
+  dispatch(setCurrentPage(page));
   dispatch(setFilteredPokemons(updatedList));
   dispatch(setIsLoading(false));
 
