@@ -5,13 +5,22 @@ const LIMIT = 20;
 
 export const fetchPokemons = async ({
   page = 1,
+  retries = 3,
 }: {
   page: number;
+  retries?: number;
 }): Promise<PageResponse<PokemonItem>> => {
-  const offset = 20 * page;
+  const offset = LIMIT * page;
   const response = await fetch(`${API_URL}/pokemon/?limit=${LIMIT}&offset=${offset}`);
 
-  return (await response.json()) as PageResponse<PokemonItem>;
+  if (response.ok) {
+    return (await response.json()) as PageResponse<PokemonItem>;
+  }
+
+  if (retries > 0) {
+    return fetchPokemons({ page, retries: retries - 1 });
+  }
+  throw new Error(`${response.status}`);
   //throw new Error('Some server error');
 };
 
